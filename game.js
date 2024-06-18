@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const audio = new Audio();
     let currentTrackIndex = 0;
 
-    // Manually list your tracks
     const tracks = [
         'assets/music1.mp3',
         'assets/music2.mp3',
@@ -33,13 +32,9 @@ document.addEventListener('DOMContentLoaded', () => {
     audio.loop = true;
 
     nextBtn.addEventListener('click', () => {
-        if (audio.paused && currentTrackIndex === 0) {
-            loadTrack(currentTrackIndex);
-        } else {
-            audio.pause();
-            currentTrackIndex = (currentTrackIndex + 1) % tracks.length;
-            loadTrack(currentTrackIndex);
-        }
+        audio.pause();
+        currentTrackIndex = (currentTrackIndex + 1) % tracks.length;
+        loadTrack(currentTrackIndex);
     });
 
     loadTrack(currentTrackIndex);
