@@ -9,14 +9,30 @@ document.addEventListener('DOMContentLoaded', () => {
         tracks.push(`assets/music${i}.mp3`);
     }
 
-    audio.src = tracks[currentTrackIndex];
-    audio.loop = true;
-    audio.play();
+    function loadTrack(index) {
+        if (index < tracks.length) {
+            audio.src = tracks[index];
+            audio.load();
+            audio.play().then(() => {
+                console.log(`Playing: ${tracks[index]}`);
+            }).catch(error => {
+                console.error('Playback failed', error);
+            });
+        } else {
+            console.error('Track index out of range');
+        }
+    }
 
+    audio.loop = true;
+
+    // Add a button to initiate the first play to comply with autoplay policies
     nextBtn.addEventListener('click', () => {
-        audio.pause();
-        currentTrackIndex = (currentTrackIndex + 1) % tracks.length;
-        audio.src = tracks[currentTrackIndex];
-        audio.play();
+        if (audio.paused && currentTrackIndex === 0) {
+            loadTrack(currentTrackIndex);
+        } else {
+            audio.pause();
+            currentTrackIndex = (currentTrackIndex + 1) % tracks.length;
+            loadTrack(currentTrackIndex);
+        }
     });
 });
