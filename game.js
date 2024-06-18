@@ -1,41 +1,22 @@
 document.addEventListener('DOMContentLoaded', () => {
     const nextBtn = document.getElementById('nextBtn');
-    const audio = new Audio();
-    let currentTrackIndex = 0;
-
     const tracks = [
         'assets/music1.mp3',
         'assets/music2.mp3',
-        'assets/music3.mp3',
-        // Add more tracks as needed
+        'assets/music3.mp3'
+        // Add more tracks here as needed
     ];
+    let currentTrackIndex = 0;
 
-    function loadTrack(index) {
-        if (index < tracks.length) {
-            audio.src = tracks[index];
-            audio.load();
-            audio.onloadeddata = () => {
-                audio.play().then(() => {
-                    console.log(`Playing: ${tracks[index]}`);
-                }).catch(error => {
-                    console.error('Playback failed', error);
-                });
-            };
-            audio.onerror = () => {
-                console.error(`Error loading track: ${tracks[index]}`);
-            };
-        } else {
-            console.error('Track index out of range');
-        }
-    }
-
+    const audio = new Audio();
+    audio.src = tracks[currentTrackIndex];
     audio.loop = true;
+    audio.play();
 
     nextBtn.addEventListener('click', () => {
         audio.pause();
         currentTrackIndex = (currentTrackIndex + 1) % tracks.length;
-        loadTrack(currentTrackIndex);
+        audio.src = tracks[currentTrackIndex];
+        audio.play();
     });
-
-    loadTrack(currentTrackIndex);
 });
