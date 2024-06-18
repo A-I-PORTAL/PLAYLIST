@@ -1,14 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
     const nextBtn = document.getElementById('nextBtn');
-    const tracks = [
-        'assets/music1.mp3',
-        'assets/music2.mp3',
-        'assets/music3.mp3'
-        // Add more tracks here as needed
-    ];
+    const audio = new Audio();
     let currentTrackIndex = 0;
 
-    const audio = new Audio();
+    // Dynamically generate the list of tracks
+    const tracks = [];
+    for (let i = 1; i <= 100; i++) { // Adjust the range as needed
+        tracks.push(`assets/music${i}.mp3`);
+    }
+
     audio.src = tracks[currentTrackIndex];
     audio.loop = true;
     audio.play();
