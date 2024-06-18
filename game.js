@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Dynamically generate the list of tracks
     const tracks = [];
-    for (let i = 1; i <= 100; i++) { // Adjust the range as needed
+    for (let i = 1; i <= 10; i++) { // Adjust the range as needed
         tracks.push(`assets/music${i}.mp3`);
     }
 
@@ -22,6 +22,9 @@ document.addEventListener('DOMContentLoaded', () => {
             };
             audio.onerror = () => {
                 console.error(`Error loading track: ${tracks[index]}`);
+                // Try the next track if there's an error
+                currentTrackIndex = (currentTrackIndex + 1) % tracks.length;
+                loadTrack(currentTrackIndex);
             };
         } else {
             console.error('Track index out of range');
@@ -40,4 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
             loadTrack(currentTrackIndex);
         }
     });
+
+    // Start with the first track
+    loadTrack(currentTrackIndex);
 });
