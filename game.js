@@ -3,11 +3,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const audio = new Audio();
     let currentTrackIndex = 0;
 
-    // Dynamically generate the list of tracks
-    const tracks = [];
-    for (let i = 1; i <= 100; i++) { // Adjust the range as needed
-        tracks.push(`assets/music${i}.mp3`);
-    }
+    // Manually list your tracks
+    const tracks = [
+        'assets/music1.mp3',
+        'assets/music2.mp3',
+        'assets/music3.mp3',
+        // Add more tracks as needed
+    ];
 
     function loadTrack(index) {
         if (index < tracks.length) {
@@ -30,7 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     audio.loop = true;
 
-    // Add a button to initiate the first play to comply with autoplay policies
     nextBtn.addEventListener('click', () => {
         if (audio.paused && currentTrackIndex === 0) {
             loadTrack(currentTrackIndex);
@@ -40,4 +41,6 @@ document.addEventListener('DOMContentLoaded', () => {
             loadTrack(currentTrackIndex);
         }
     });
+
+    loadTrack(currentTrackIndex);
 });
