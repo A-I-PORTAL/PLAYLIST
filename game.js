@@ -44,6 +44,5 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Start with the first track
-    loadTrack(currentTrackIndex);
+    loadTrack(currentTrackIndex); // Start with the first track
 });
