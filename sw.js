@@ -4,7 +4,6 @@ const filesToCache = [
     '/INFINITE/index.html',
     '/INFINITE/style.css',
     '/INFINITE/game.js',
-    // Add all audio files
     '/INFINITE/assets/music1.mp3',
     '/INFINITE/assets/music2.mp3',
     '/INFINITE/assets/music3.mp3',
